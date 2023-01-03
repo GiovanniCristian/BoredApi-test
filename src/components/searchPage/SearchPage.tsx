@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './SearchPage.scss';
 
+import { ActivityContext } from '../../context/activity';
+
 
 function SearchPage () {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Record<string, any>>({});
   const [search, setSearch] = useState('');
+  const context = useContext(ActivityContext);
 
   const getApi = () => {
-    setData(data);
     axios
       .get('https://www.boredapi.com/api/activity')
       .then(res => {
@@ -16,7 +18,24 @@ function SearchPage () {
         console.log(res.data);
       })
       .catch(err => console.log(err));
+
+      context.pushActivity ( data )
   };
+
+  const searchApi = () => {
+    axios
+      .get('https://www.boredapi.com/api/activity', {params: {activity: search , type: search , participants: search}})
+      .then(res => {
+        setData(res.data);
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  useEffect(() => {
+    searchApi();
+    if (setSearch.length) searchApi();
+  },[]);
 
   return (
     <section className='search-form'>
@@ -28,27 +47,14 @@ function SearchPage () {
           onChange={event => {setSearch(event.target.value)}}
         />
       </div>
-      <div>
-        {data.filter((val) => {
-          if(val.activity.toLowerCase().includes(search.toLowerCase())) {
-            return val
-          } else if (val.type.toLowerCase().includes(search.toLowerCase())) {
-            return val
-          } else if (val.participants.toLowerCase().includes(search.toLowerCase())) {
-            return val
-          }}).map((val, key) => {
-          return (
-            <div key={key}>
-              <h2>{val.activity}</h2>
-              <p>{val.type}</p>
-              <p>{val.participants}</p>
-            </div>
-          )}
-          )} 
+      <div className='body-form'>
+          <h3>{data.activity}</h3>
+          <p>{data.type}</p>
+          <p>{data.participants}</p>
       </div>
       <div className='btn'>
         <button onClick={getApi}>Let's Start an activity</button>
-        <button>Add it to favourite</button>
+        <button onClick={context.pushActivity}>Add it to favourite</button>
       </div>
     </section>
   );

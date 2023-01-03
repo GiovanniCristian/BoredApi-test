@@ -1,8 +1,9 @@
-import React from 'react'
+import { useContext } from "react"
 import "./favAct.scss"
+import { ActivityContext } from "../../context/activity"
 
-
-const favAct = () => {
+function FavAct (){
+  const context = useContext(ActivityContext);
   return (
     <table>
       <thead>
@@ -15,14 +16,14 @@ const favAct = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>
-            ciao
-          </th>
-        </tr>
+      {context.activity.map( ( activity, idx ) => (
+          <tr key={idx}>
+            <td>{activity}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )
 }
 
-export default favAct
+export default FavAct
