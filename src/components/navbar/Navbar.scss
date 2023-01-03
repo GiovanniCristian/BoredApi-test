@@ -1,0 +1,21 @@
+ul {
+    width: auto;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    li {
+        list-style-type: none;
+            .search-link, .favAct-link{
+                text-decoration: none;
+                font-weight: bold;
+                color: darkblue;
+                font-size: larger;
+                transition: 0.5s ease-in-out;
+                &:hover {
+                    color: purple;
+                }
+            }
+        }
+}
