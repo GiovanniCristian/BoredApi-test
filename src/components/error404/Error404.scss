@@ -5,15 +5,15 @@
     height: 100vh;
     .typed {
         text-align: center;
-        color: darkblue;
+        color: rgb(30, 30, 189);
         font-weight: bold;
         font-size: 3rem;
             a {
-                color: purple;
+                color: rgb(157, 14, 157);
                 text-decoration: none;
                 font-size: 3.5rem;
                     &:hover {
-                        text-decoration: underline darkblue;
+                        text-decoration: underline rgb(30, 30, 189);
                     }
             }
     }

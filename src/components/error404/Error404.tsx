@@ -1,10 +1,18 @@
 import Typed from "react-typed";
+import error from "../../images/error.png";
 
 import "./Error404.scss";
 
 const Error404 = () => {
   return (
-  <div className="container">
+  <div className="container"
+    style={{
+      backgroundImage:`url(${error})`,
+      backgroundRepeat:"no-repeat",
+      backgroundSize:"cover",
+      backgroundPosition:"center"
+    }}
+  >
       <div className="typed">
         <Typed
           strings={['Error 404', 'Sorry, page not found.', 'Please, go to the <a href="/">Homepage</a>.']}

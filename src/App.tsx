@@ -14,7 +14,7 @@ import Error404 from './components/error404/Error404';
 
 
 function App() {
-  const [ activities, setActivities ] = useState ( [] );
+  const [ activities, setActivities ] = useState([]);
 
   const activitiesContextValue = {
     pushActivity: ( activity ) => setActivities( activities => {
