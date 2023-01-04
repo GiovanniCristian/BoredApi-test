@@ -19,7 +19,7 @@ function SearchPage () {
       })
       .catch(err => console.log(err));
 
-      context.pushActivity ( data )
+      context.pushActivity ( )
   };
 
   const searchApi = () => {
@@ -31,11 +31,6 @@ function SearchPage () {
       })
       .catch(err => console.log(err));
   }
-
-  useEffect(() => {
-    searchApi();
-    if (setSearch.length) searchApi();
-  },[]);
 
   return (
     <section className='search-form'>
