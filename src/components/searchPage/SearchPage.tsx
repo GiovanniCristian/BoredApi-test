@@ -19,18 +19,32 @@ function SearchPage () {
       })
       .catch(err => console.log(err));
 
-      context.pushActivity ( )
   };
 
   const searchApi = () => {
+    let params = {
+      type: '',
+      participants: ''
+    };
+    if ( /[0-9]+/g.test( search )){
+      params.participants = search
+    } else {
+      params.type = search
+    }
     axios
-      .get('https://www.boredapi.com/api/activity', {params: {activity: search , type: search , participants: search}})
+      .get('https://www.boredapi.com/api/activity', { params })
       .then(res => {
         setData(res.data);
         console.log(res.data);
       })
       .catch(err => console.log(err));
   }
+
+  useEffect(() => {
+    if (search.trim()){
+      searchApi();
+    }
+  }, [search] );
 
   return (
     <section className='search-form'>
@@ -48,8 +62,8 @@ function SearchPage () {
           <p>{data.participants}</p>
       </div>
       <div className='btn'>
-        <button onClick={getApi}>Let's Start an activity</button>
-        <button onClick={context.pushActivity}>Add it to favourite</button>
+        <button onClick={getApi}>Let's Start a random one</button>
+        <button onClick={() => context.pushActivity( data.activity )}>Add it to favourite</button>
       </div>
     </section>
   );

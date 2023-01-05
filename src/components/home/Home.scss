@@ -1,22 +1,46 @@
 section {
+    width: 50vw;
+    margin: auto;
     margin-top: 20px;
+    h1 {
+        text-align: center;
+        color: purple;
+        margin-bottom: 50px;
+    }
     .body-header {
-        margin: 50px auto;
+        margin: 70px auto;
         p {
             color: darkblue;
             text-align: center;
             font-weight: 500;
+                .home-link {
+                    color: purple;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
         }
     }
 }
 
 footer {
-    width: 100%;
-        p {
-            color: darkblue;
-            text-align: center;
-            font-weight: 500;
-            font-size: 12px;
-            margin-top: 20px;
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        margin-top: 120px;
+        li {
+            padding: 0 20px;
+            list-style: none;
+            font-size: 14px;
+            a {
+                text-decoration: none;
+                color: darkblue;
+                font-weight: 300;
+                    &:hover {
+                        color: purple;
+                    }
+            }
         }
+    }
 }

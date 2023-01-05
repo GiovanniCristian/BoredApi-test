@@ -14,10 +14,10 @@ import Error404 from './components/error404/Error404';
 
 
 function App() {
-  const [ activities, setActivities ] = useState([]);
+  const [ activities, setActivities ] = useState<string[]>([]);
 
   const activitiesContextValue = {
-    pushActivity: ( activity ) => setActivities( activities => {
+    pushActivity: ( activity: string ) => setActivities( activities => {
       let newFavourite = [...activities];
       newFavourite.push( activity );
       return newFavourite;
